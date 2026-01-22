@@ -7,7 +7,7 @@
 #define _INTEL_VENDOR_STRING   "GenuineIntel"
 
 #define VENDOR_COLOUR (strcmp(cpu_get_vendor(), _AMD_VENDOR_STRING) == 0 ? RED : CYAN)
-#define BOLD_VENDOR_COLOUR (strcmp(cpu_get_vendor(), _AMD_VENDOR_STRING) == 0 ? BRED : BCYAN)
+#define BOLD_VENDOR_COLOUR (strcmp(cpu_get_vendor(), _AMD_VENDOR_STRING) == 0 ? RED : CYAN)
 
 #define HAS_FEATURE(reg, bit) (((reg) & (1 << (bit))) != 0)
 #define SUPPORTS_LEAF(leaf) if ()
@@ -17,7 +17,7 @@
 #define IF_VENDOR_INTEL(intel_arch_code) \
     do { if (!memcmp(cpu_get_vendor(), _INTEL_VENDOR_STRING, (unsigned long)12)) { intel_arch_code } } while (0)
 
-#define PRINT_REGISTER_VALUES() printf("%s%s:%s():%d eax:0x%08X, ebx:0x%08X, ecx:0x%08X, edx:0x%08X\n", BMAGENTA, __FILE__, __PRETTY_FUNCTION__, __LINE__, (eax), (ebx), (ecx), (edx));
+#define PRINT_REGISTER_VALUES() printf("%s%s:%s():%d eax:0x%08X, ebx:0x%08X, ecx:0x%08X, edx:0x%08X\n", MAGENTA, __FILE__, __PRETTY_FUNCTION__, __LINE__, (eax), (ebx), (ecx), (edx));
 
 /// @brief CPU Structure
 typedef struct cpu

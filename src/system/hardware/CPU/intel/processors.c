@@ -53,7 +53,7 @@ unsigned int intel_cpu_get_logical_processor_count(void) {
 /// @return 1 (e-core) 2 (p-core)
 unsigned int intel_cpu_get_hybrid_core_type(void){
     if (!cpu_supports_standard_leaf(0x1A)) {
-        printf("%s%s:%d Hybrid function not supported on non hybrid CPU\nThis is an Error, please report at https://github.com/Mellurboo/SpecSeek", BRED, __FILE__, __LINE__);
+        printf("%s%s:%d Hybrid function not supported on non hybrid CPU\nThis is an Error, please report at https://github.com/Mellurboo/SpecSeek", RED, __FILE__, __LINE__);
         return 0;
     }
     unsigned int eax, ebx, ecx, edx;
@@ -138,7 +138,7 @@ unsigned int intel_cpu_get_physical_core_count(void) {
             if (cores[i].core_type == 0x40) performance_core_count++;
         }
 
-        free(cores);
+        free(cores, sizeof(core_apic_t) * processors);
         return performance_core_count + efficient_core_count;
 
     }else {
@@ -153,7 +153,7 @@ unsigned int intel_cpu_get_crystal_clock_speed() {
 
     if (!cpu_supports_standard_leaf(0x15)) {
         IF_VERBOSE(2) {
-            printf("%sCPUID leaf 0x15 not supported on this CPU\n", BYELLOW);
+            printf("%sCPUID leaf 0x15 not supported on this CPU\n", YELLOW);
         }
         return 0;
     }

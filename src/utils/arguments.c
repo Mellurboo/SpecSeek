@@ -21,35 +21,20 @@ int construct_arguments(int argc, const char** argv) {
         ARG_MATCH(_ARGUMENT_PUT_FEATURES_ON_NEWLINE) { arguments.put_features_on_newline = 1; continue;}
         ARG_MATCH(_ARGUEMNT_HELP) {arguments.help = 1; continue;}
         
-        printf("%s%s%s is not a valid argument, use --help to see a list of commands, aborting%s\n", BRED, argv[i], RED, RESET);
+        printf("%s%s%s is not a valid argument, use --help to see a list of commands, aborting%s\n", RED, argv[i], RED, RESET);
         return 1;
     }
-    
-    // TTY check for pipe output purity. we do not want ansi codes there
-    // Linux GCC Implementation
-    #if defined(__unix__)
-    if (!isatty(STDIN_FILENO) || !isatty(STDOUT_FILENO)){
-        arguments.no_ansi = 1;
-    }
-    #endif
-
-    // Windows Compliant Implementation
-    #if defined(_WIN32)
-    if (!_isatty(STDIN_FILENO) || !_isatty(STDOUT_FILENO)){
-        arguments.no_ansi = 1;
-    }
-    #endif
 
     return 0;
 }
 
 int print_help(void){
-    printf("%s%s%s: %s\n", BWHITE, "--verbose {1|2|3}", YELLOW, "show more information, in varing levels, 3 being the most info");
-    printf("%s%s%s: %s\n", BWHITE, "--features-on-newline}", YELLOW, "prints all CPU features on a new line for readability");
-    printf("%s%s%s: %s\n", BWHITE, "--no-ansi", YELLOW, "inhibits all ANSI escape codes, so no colour or terminal clearing");
-    printf("%s%s%s: %s\n", BWHITE, "--help", YELLOW, "prints this help string");
+    printf("%s%s%s: %s\n", WHITE, "--verbose {1|2|3}", YELLOW, "show more information, in varing levels, 3 being the most info");
+    printf("%s%s%s: %s\n", WHITE, "--features-on-newline}", YELLOW, "prints all CPU features on a new line for readability");
+    printf("%s%s%s: %s\n", WHITE, "--no-ansi", YELLOW, "inhibits all ANSI escape codes, so no colour or terminal clearing");
+    printf("%s%s%s: %s\n", WHITE, "--help", YELLOW, "prints this help string");
     printf("%s", RESET);        // because for some reason despite the fflush stdiout call it still stains the terminal!!!!
-    fflush(stdout);
+
     return 0;
 }
 

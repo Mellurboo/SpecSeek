@@ -18,7 +18,7 @@ void cpu_print_feature(int verbosity, int status, const char* feature_name){
         feature_count++;
 
         printf("%s%-8s %s%-8s%s|%-8s",
-            BWHITE, feature_name,
+            WHITE, feature_name,
             status != 0 ? GREEN : RED,
             status != 0 ? "TRUE" : "FALSE",
             RESET, RESET);

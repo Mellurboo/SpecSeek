@@ -1,0 +1,4 @@
+make clean
+make build
+
+cp bin/specseek ~/git/Bleed-Kernel/initrd/bin/

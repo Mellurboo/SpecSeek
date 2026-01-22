@@ -9,6 +9,7 @@
 #include <system/hardware/CPU/microarch.h>
 #include <system/hardware/CPU/specifications.h>
 #include <system/hardware/CPU/virtualisation.h>
+#include <syscalls/exit.h>
 
 /// @brief Spec Seek Entry Point
 /// @param argc argument count
@@ -24,20 +25,5 @@ int main(int argc, const char** argv){
     TERM_DIVIDER_NOTEXT(BLUE);
 
     print_cpu_info(init_cpu());
-
-    return exit_specseek();
-}
-
-/// @brief specseek has finished and probably without any issues, any logic that happens before we finish goes here.
-int exit_specseek(){
-    // Windows will close straight away after execution so this allows users to read it.
-    #if defined(_WIN32)
-    printf("\n%sSpec Seek has finished, Press any key to exit: ", BWHITE);
-    getchar();
-    #endif
-
-    // This will stop us from staining the terminal session
-    printf("%s", RESET);
-    fflush(stdout);
-    return 0;
+    _exit(0);
 }

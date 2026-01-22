@@ -22,7 +22,7 @@ unsigned int amd_cpu_get_thread_count_per_core(){
         unsigned int thread_count = (ebx >> 8) & 0xFF;
         return thread_count + 1;
     }else{
-        IF_VERBOSE(2) printf("%sCPUID 0x8000001E Threads per Core Not supported\n", BRED);
+        IF_VERBOSE(2) printf("%sCPUID 0x8000001E Threads per Core Not supported\n", RED);
         /*
             If we cant find the threads per core its probably becuase its either not
             Hyperthreaded or there its only 2 so AMD didnt bother documenting it much
@@ -31,10 +31,10 @@ unsigned int amd_cpu_get_thread_count_per_core(){
         */
         cpuid(0x00000001, 0, &eax, &ebx, &ecx, &edx);
         if (HAS_FEATURE(edx, 28)){
-            IF_VERBOSE(2) printf("%sHyperthreading is enabled, assuming 2 threads per Core\n", BRED);
+            IF_VERBOSE(2) printf("%sHyperthreading is enabled, assuming 2 threads per Core\n", RED);
             return 2;
         }else{
-            IF_VERBOSE(2) printf("%sHyperthreading is disabled, assuming 1 thread per Core\n", BRED);
+            IF_VERBOSE(2) printf("%sHyperthreading is disabled, assuming 1 thread per Core\n", RED);
             return 1;
         }
     }
