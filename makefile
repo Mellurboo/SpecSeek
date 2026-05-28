@@ -3,7 +3,7 @@ CC         := gcc
 BIN_DIR     = bin
 OBJ_DIR     = $(BIN_DIR)/obj
 
-VENDOR_DIR  = ../libspecseek/bin/
+VENDOR_DIR  = ../libspecseek/bin/elf/
 
 C_FLAGS     = -Wall -Wextra -Werror -Wno-unused-parameter -m64 \
               -Iinclude \

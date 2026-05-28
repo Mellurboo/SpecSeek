@@ -253,8 +253,8 @@ int main(int argc, char **argv) {
 
     // CPU Identity  
     box_top("CPU IDENTITY");
-    kv("Vendor",   "%s", identifiers.cpu_vendor_string);
-    kv("Brand",    "%s", identifiers.cpu_brand_string);
+    kv("Vendor",   identifiers.cpu_vendor_string);
+    kv("Brand",    identifiers.cpu_brand_string);
     kv("Model",    "0x%X (base 0x%X, ext 0x%X)",
        identifiers.cpu_model, identifiers.cpu_model_base, identifiers.cpu_model_extended);
     kv("Family",   "0x%X (base 0x%X, ext 0x%X)",
