@@ -97,6 +97,33 @@ static void feat_end(void) {
 
 #define F(field) feat_item(#field, (f)->field)
 
+void print_cpu_features_minimal(const specseek_cpu_features *f) {
+    if (!f) return;
+
+    box_top("FEATURES");
+    feat_begin();
+    
+    F(sse);      F(sse2);
+    F(sse3);     F(ssse3);
+    F(sse4_1);   F(sse4_2);
+
+    F(avx);      F(avx2);
+    F(f16c);     F(fma);
+    F(avx512f);
+
+    F(vmx);      F(svm);
+    F(hypervisor);
+
+    F(nx);       F(smep);
+    F(smap);     F(pdpe1gb);
+
+    F(popcnt);   F(bmi1);
+    F(bmi2);     F(lm);
+
+    feat_end();
+    box_bot();
+}
+
 void print_cpu_features(const specseek_cpu_features *f) {
     if (!f) return;
 
@@ -349,7 +376,11 @@ int main(int argc, char **argv) {
     // Features  
     specseek_cpu_features features = {0};
     specseek_set_cpuid_features(&features);
-    print_cpu_features(&features);
+    if (args.verbose) {
+        print_cpu_features(&features);
+    } else {
+        print_cpu_features_minimal(&features);
+    }
 
     return 0;
 }

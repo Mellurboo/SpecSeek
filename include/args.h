@@ -3,6 +3,7 @@
 
 typedef struct {
     int no_ansi;
+    int verbose;
     int feature_mode;
     int feature_count;
     const char **features;

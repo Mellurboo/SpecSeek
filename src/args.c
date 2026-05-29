@@ -223,6 +223,8 @@ specseek_args args_parse(int argc, char **argv) {
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "--no-ansi") == 0) {
             result.no_ansi = 1;
+        } else if (strcmp(argv[i], "--verbose") == 0) {
+            result.verbose = 1;
         } else if (strcmp(argv[i], "--feature") == 0) {
             result.feature_mode = 1;
             result.features = (const char **)(argv + i + 1);
